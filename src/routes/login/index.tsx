@@ -16,10 +16,10 @@ export default function () {
   }
 
   return (
-    <div class="min-h-screen flex flex-col justify-center items-center p-8">
+    <div class="min-h-screen flex flex-col justify-center items-center p-4">
       <form
         onSubmit={handleSubmit}
-        class="py-5 backdrop-blur-sm rounded-xl max-w-[550px] w-full lg:p-8 bg-white lg:shadow"
+        class="py-5 backdrop-blur-sm rounded-xl max-w-[450px] w-full p-8 bg-white bg-opacity-50 shadow"
       >
         <div class="mb-10">
           <div class="text-2xl font-semibold">Login</div>

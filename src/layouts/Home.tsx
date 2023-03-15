@@ -38,7 +38,7 @@ export default function HomeLayout(props: JSX.HTMLAttributes<HTMLDivElement>) {
         />
       </svg>
 
-      <div class="relative text-gray-800">{props.children}</div>
+      <div class="relative text-gray-700 text-sm">{props.children}</div>
     </>
   );
 }

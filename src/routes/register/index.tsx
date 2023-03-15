@@ -35,10 +35,10 @@ export default function () {
   }
 
   return (
-    <div class="min-h-screen flex flex-col items-center justify-center p-8">
+    <div class="min-h-screen flex flex-col items-center justify-center p-4">
       <form
         onSubmit={handleSubmit}
-        class="py-5 backdrop-blur-sm rounded-xl max-w-[550px] w-full lg:p-8 lg:bg-white lg:shadow"
+        class="backdrop-blur-sm rounded-xl max-w-[550px] w-full p-8 bg-white shadow bg-opacity-50"
       >
         <div class="mb-10">
           <div class="text-2xl font-semibold">Register</div>
@@ -78,22 +78,24 @@ export default function () {
           value={req.alamat}
           onChange={(e) => setReq("alamat", e.currentTarget.value)}
         />
-        <input
-          type="text"
-          class="form-field"
-          placeholder="Username"
-          required
-          value={req.username}
-          onChange={(e) => setReq("username", e.currentTarget.value)}
-        />
-        <input
-          type="password"
-          class="form-field"
-          placeholder="Password"
-          required
-          value={req.password}
-          onChange={(e) => setReq("password", e.currentTarget.value)}
-        />
+        <div class="flex flex-col lg:flex-row lg:space-x-3">
+          <input
+            type="text"
+            class="form-field"
+            placeholder="Username"
+            required
+            value={req.username}
+            onChange={(e) => setReq("username", e.currentTarget.value)}
+          />
+          <input
+            type="password"
+            class="form-field"
+            placeholder="Password"
+            required
+            value={req.password}
+            onChange={(e) => setReq("password", e.currentTarget.value)}
+          />
+        </div>
         <div class="mt-10">
           <button
             type="submit"
