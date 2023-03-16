@@ -17,9 +17,11 @@ return new class extends Migration
             $table->string('telepon');
             $table->string('email');
             $table->string('alamat');
+            $table->text('lokasi')->nullable();
+            $table->enum('role', ['1', '2'])->comment('1: admin, 2: petugas, 3:pelanggan');
+            $table->string('foto')->nullable();
             $table->string('username');
             $table->string('password');
-            $table->string('foto')->nullable();
             $table->timestamps();
         });
     }

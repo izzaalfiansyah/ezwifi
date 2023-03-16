@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
             'telepon' => '081231921351',
             'email' => 'superadmin@admin.com',
             'alamat' => 'Gumukmas, Jember',
+            'role' => '1',
             'username' => 'superadmin',
             'password' => Hash::make('superadmin'),
         ]);

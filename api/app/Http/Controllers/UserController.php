@@ -31,6 +31,10 @@ class UserController extends Controller
     {
         $data = $req->validated();
 
+        if ($req->foto) {
+            $data['foto'] = $this->base64Upload($req->foto, 'user', 'png');
+        }
+
         $item = User::create($data);
 
         return new UserResource($item);
@@ -38,9 +42,15 @@ class UserController extends Controller
 
     public function update(UserRequest $req, $id)
     {
+        $item = User::find($id);
         $data = $req->validated();
 
-        $item = User::find($id);
+        if ($req->foto) {
+            @unlink(public_path($item->foto));
+            $data['foto'] = $this->base64Upload($req->foto, 'user', 'png');
+        } else {
+            unset($data['foto']);
+        }
 
         if ($item) {
             $item->update($data);
@@ -54,6 +64,7 @@ class UserController extends Controller
         $item = User::find($id);
 
         if ($item) {
+            @unlink(public_path($item->foto));
             $item->delete();
         }
 
@@ -67,7 +78,11 @@ class UserController extends Controller
         if ($item) {
             if (Hash::check($req->password, $item->password)) {
                 $key = env('JWT_KEY');
-                $payload = (new UserResource($item))->toArray($req);
+                $payload = [
+                    'id' => $item->id,
+                    'datetime' => date('YmdHis'),
+                ];
+
                 $token = JWT::encode($payload, $key, 'HS256');
 
                 return Response::json([
