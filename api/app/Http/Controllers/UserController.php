@@ -7,14 +7,28 @@ use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Firebase\JWT\JWT;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Response;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $req)
     {
         $builder = new User();
+
+        if ($role = $req->role) {
+            $builder = $builder->where('role', $role);
+        }
+
+        if ($search = $req->q) {
+            $builder = $builder->where(function ($query) use ($search) {
+                return $query->where('nama', 'LIKE', "%$search%")
+                    ->orWhere('telepon', 'LIKE', "%$search%")
+                    ->orWhere('alamat', 'LIKE', "%$search%");
+            });
+        }
+
         $items = $builder->paginate(10);
 
         return UserResource::collection($items);
