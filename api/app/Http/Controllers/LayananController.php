@@ -9,9 +9,17 @@ use Illuminate\Http\Request;
 
 class LayananController extends Controller
 {
-    public function index()
+    public function index(Request $req)
     {
         $builder = new Layanan;
+
+        if ($search = $req->search) {
+            $builder = $builder->where(function ($query) use ($search) {
+                return $query->where('nama', 'like', "%$search%")
+                    ->orWhere('deskripsi', 'like', "%$search")
+                    ->orWhere('harga', 'like', "%$search%");
+            });
+        }
 
         $items = $builder->paginate(10);
 
