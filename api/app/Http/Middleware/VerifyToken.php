@@ -25,7 +25,7 @@ class VerifyToken
 
             return $next($request);
         } catch (\Exception $e) {
-            return FacadesResponse::json(['message' => 'Not authorized.']);
+            return FacadesResponse::json(['message' => 'Unauthorized.'], 401);
         }
     }
 }
