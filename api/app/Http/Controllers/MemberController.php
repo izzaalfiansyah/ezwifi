@@ -34,6 +34,13 @@ class MemberController extends Controller
         return MemberResource::collection($items);
     }
 
+    public function show($id)
+    {
+        $item = Member::find($id);
+
+        return new MemberResource($item);
+    }
+
     public function store(MemberRequest $req)
     {
         $data = $req->validated();
