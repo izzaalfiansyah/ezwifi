@@ -26,6 +26,13 @@ class LayananController extends Controller
         return LayananResource::collection($items);
     }
 
+    public function show($id)
+    {
+        $item = Layanan::find($id);
+
+        return new LayananResource($item);
+    }
+
     public function store(LayananRequest $req)
     {
         $data = $req->validated();
