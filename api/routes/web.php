@@ -24,4 +24,5 @@ Route::middleware(VerifyToken::class)->group(function () {
     Route::resource('/user', Controllers\UserController::class);
     Route::resource('/layanan', Controllers\LayananController::class);
     Route::resource('/member', Controllers\MemberController::class);
+    Route::resource('/transaksi', Controllers\TransaksiController::class);
 });
