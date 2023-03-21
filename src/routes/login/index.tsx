@@ -1,5 +1,6 @@
 import { createStore } from "solid-js/store";
-import { A } from "solid-start";
+import { A, useNavigate } from "solid-start";
+import auth from "~/services/auth";
 
 export default function () {
   const [req, setReq] = createStore<{
@@ -10,16 +11,33 @@ export default function () {
     password: "",
   });
 
-  function handleSubmit(e: SubmitEvent) {
+  const navigate = useNavigate();
+
+  async function handleSubmit(e: SubmitEvent) {
     e.preventDefault();
-    alert(JSON.stringify(req));
+
+    try {
+      const res = await auth.login(req);
+      localStorage.setItem("token", res.token);
+
+      alert("berhasil login");
+
+      setReq({
+        username: "",
+        password: "",
+      });
+
+      navigate("/");
+    } catch (e: any) {
+      alert(e.response.data.message);
+    }
   }
 
   return (
     <div class="min-h-screen flex flex-col justify-center items-center p-4">
       <form
         onSubmit={handleSubmit}
-        class="py-5 backdrop-blur-sm rounded-xl max-w-[450px] w-full p-8 bg-white bg-opacity-50 shadow"
+        class="py-5 backdrop-blur-sm rounded-xl max-w-[450px] w-full p-8 bg-white shadow"
       >
         <div class="mb-10">
           <div class="text-2xl font-semibold">Login</div>

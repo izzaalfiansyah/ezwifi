@@ -1,22 +1,20 @@
 import { createStore } from "solid-js/store";
-import { A } from "solid-start";
+import { A, useNavigate } from "solid-start";
+import UserInterface from "~/interfaces/user";
+import auth from "~/services/auth";
 
 export default function () {
-  const [req, setReq] = createStore<{
-    nama: string;
-    telepon: string;
-    email: string;
-    alamat: string;
-    username: string;
-    password: string;
-  }>({
+  const [req, setReq] = createStore<UserInterface>({
     nama: "",
     telepon: "",
     email: "",
     alamat: "",
     username: "",
     password: "",
+    role: "3",
   });
+
+  const navigate = useNavigate();
 
   function nullable() {
     setReq({
@@ -26,19 +24,30 @@ export default function () {
       alamat: "",
       username: "",
       password: "",
+      role: "3",
     });
   }
 
-  function handleSubmit(e: SubmitEvent) {
+  async function handleSubmit(e: SubmitEvent) {
     e.preventDefault();
-    nullable();
+
+    try {
+      await auth.register(req);
+      alert("berhasil registrasi data. Silahkan login!");
+
+      nullable();
+
+      navigate("/login");
+    } catch (e: any) {
+      alert(e.response.data.message);
+    }
   }
 
   return (
     <div class="min-h-screen flex flex-col items-center justify-center p-4">
       <form
         onSubmit={handleSubmit}
-        class="backdrop-blur-sm rounded-xl max-w-[550px] w-full p-8 bg-white shadow bg-opacity-50"
+        class="backdrop-blur-sm rounded-xl max-w-[550px] w-full p-8 bg-white shadow"
       >
         <div class="mb-10">
           <div class="text-2xl font-semibold">Register</div>

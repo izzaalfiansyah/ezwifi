@@ -19,8 +19,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::post('/login', [Controllers\UserController::class, 'login']);
+Route::post('/register', [Controllers\UserController::class, 'store']);
+
 Route::middleware(VerifyToken::class)->group(function () {
-    Route::post('/login', [Controllers\UserController::class, 'login']);
     Route::resource('/user', Controllers\UserController::class);
     Route::resource('/layanan', Controllers\LayananController::class);
     Route::resource('/member', Controllers\MemberController::class);
