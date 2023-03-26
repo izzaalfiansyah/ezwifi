@@ -8,7 +8,9 @@ export default (props: Props) => {
   return (
     <button
       type="submit"
-      class={"rounded shadow-sm p-3 py-2.5 " + local.class}
+      class={
+        "rounded shadow-sm p-3 py-2.5 bg-primary text-white " + local.class
+      }
       {...other}
     ></button>
   );

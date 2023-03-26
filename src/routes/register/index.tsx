@@ -1,5 +1,8 @@
 import { createStore } from "solid-js/store";
 import { A, useNavigate } from "solid-start";
+import Btn from "~/components/Btn";
+import TextArea from "~/components/TextArea";
+import TextField from "~/components/TextField";
 import UserInterface from "~/interfaces/user";
 import auth from "~/services/auth";
 
@@ -53,52 +56,44 @@ export default function () {
           <div class="text-2xl font-semibold">Register</div>
           <div>Daftarkan akun anda!</div>
         </div>
-        <input
-          type="text"
-          class="form-field"
+        <TextField
           placeholder="Nama Kamu"
           required
           value={req.nama}
           onChange={(e) => setReq("nama", e.currentTarget.value)}
         />
         <div class="flex flex-col lg:flex-row lg:space-x-3">
-          <input
+          <TextField
             type="tel"
-            class="form-field"
             placeholder="Nomor Telepon"
             required
             value={req.telepon}
             onChange={(e) => setReq("telepon", e.currentTarget.value)}
           />
-          <input
-            type="text"
-            class="form-field"
+          <TextField
+            type="email"
             placeholder="Email"
             required
             value={req.email}
             onChange={(e) => setReq("email", e.currentTarget.value)}
           />
         </div>
-        <textarea
-          rows={4}
-          class="form-field resize-none"
+        <TextArea
+          rows={3}
           placeholder="Alamat"
           required
           value={req.alamat}
           onChange={(e) => setReq("alamat", e.currentTarget.value)}
         />
         <div class="flex flex-col lg:flex-row lg:space-x-3">
-          <input
-            type="text"
-            class="form-field"
+          <TextField
             placeholder="Username"
             required
             value={req.username}
             onChange={(e) => setReq("username", e.currentTarget.value)}
           />
-          <input
+          <TextField
             type="password"
-            class="form-field"
             placeholder="Password"
             required
             value={req.password}
@@ -106,12 +101,9 @@ export default function () {
           />
         </div>
         <div class="mt-10">
-          <button
-            type="submit"
-            class="w-full rounded shadow-sm p-3 bg-primary text-white"
-          >
+          <Btn type="submit" class="w-full">
             Daftar
-          </button>
+          </Btn>
         </div>
         <div class="mt-5 text-center">
           Sudah punya akun? Login{" "}

@@ -59,7 +59,7 @@ export default function () {
           required
         />
         <div class="mt-8">
-          <Btn type="submit" class="bg-primary text-white w-full">
+          <Btn type="submit" class="w-full">
             Masuk
           </Btn>
         </div>
