@@ -1,5 +1,6 @@
 import { createStore } from "solid-js/store";
 import { A, useNavigate } from "solid-start";
+import Btn from "~/components/Btn";
 import auth from "~/services/auth";
 
 export default function () {
@@ -59,13 +60,10 @@ export default function () {
           value={req.password}
           onChange={(e) => setReq("password", e.currentTarget.value)}
         />
-        <div class="mt-10">
-          <button
-            type="submit"
-            class="w-full rounded shadow-sm p-3 bg-primary text-white"
-          >
+        <div class="mt-8">
+          <Btn type="submit" class="bg-primary text-white w-full">
             Masuk
-          </button>
+          </Btn>
         </div>
         <div class="mt-5 text-center">
           Belum punya akun? Daftar{" "}
