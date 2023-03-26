@@ -1,6 +1,7 @@
 import { createStore } from "solid-js/store";
 import { A, useNavigate } from "solid-start";
 import Btn from "~/components/Btn";
+import TextField from "~/components/TextField";
 import auth from "~/services/auth";
 
 export default function () {
@@ -44,21 +45,18 @@ export default function () {
           <div class="text-2xl font-semibold">Login</div>
           <div>Mulai masuk ke akun anda!</div>
         </div>
-        <input
-          type="text"
-          class="form-field"
+        <TextField
           placeholder="Username atau Email"
-          required
           value={req.username}
           onChange={(e) => setReq("username", e.currentTarget.value)}
-        />
-        <input
-          type="password"
-          class="form-field"
-          placeholder="Password"
           required
+        />
+        <TextField
+          type="password"
+          placeholder="Password"
           value={req.password}
           onChange={(e) => setReq("password", e.currentTarget.value)}
+          required
         />
         <div class="mt-8">
           <Btn type="submit" class="bg-primary text-white w-full">
