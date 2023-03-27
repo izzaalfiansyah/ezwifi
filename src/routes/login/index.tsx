@@ -29,6 +29,8 @@ export default function () {
         password: "",
       });
 
+      localStorage.setItem("token", res.token);
+
       navigate("/");
     } catch (e: any) {
       alert(e.response.data.message);
