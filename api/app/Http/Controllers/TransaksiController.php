@@ -32,7 +32,7 @@ class TransaksiController extends Controller
 
     public function show($id)
     {
-        $item = Transaksi::find($id);
+        $item = Transaksi::findOrFail($id);
 
         return new TransaksiResource($item);
     }
@@ -50,7 +50,7 @@ class TransaksiController extends Controller
     {
         $data = $req->validated();
 
-        $item = Transaksi::find($id);
+        $item = Transaksi::findOrFail($id);
 
         if ($item) {
             $item->update($data);
@@ -61,7 +61,7 @@ class TransaksiController extends Controller
 
     public function destroy($id)
     {
-        $item = Transaksi::find($id);
+        $item = Transaksi::findOrFail($id);
 
         if ($item) {
             $item->delete();
