@@ -37,7 +37,7 @@ class UserController extends Controller
 
     public function show($id)
     {
-        $item = User::find($id);
+        $item = User::findOrFail($id);
 
         return new UserResource($item);
     }
@@ -57,7 +57,8 @@ class UserController extends Controller
 
     public function update(UserRequest $req, $id)
     {
-        $item = User::find($id);
+        $item = User::findOrFail($id);
+
         $data = $req->validated();
 
         if ($req->foto) {
@@ -67,21 +68,17 @@ class UserController extends Controller
             unset($data['foto']);
         }
 
-        if ($item) {
-            $item->update($data);
-        }
+        $item->update($data);
 
         return new UserResource($item);
     }
 
     public function destroy($id)
     {
-        $item = User::find($id);
+        $item = User::findOrFail($id);
 
-        if ($item) {
-            @unlink(public_path($item->foto));
-            $item->delete();
-        }
+        @unlink(public_path($item->foto));
+        $item->delete();
 
         return new UserResource($item);
     }
@@ -119,11 +116,11 @@ class UserController extends Controller
             $token = explode(' ', $req->header('Authorization'))[1];
             $data = JWT::decode($token, new Key($key, 'HS256'));
 
-            $item = User::find($data->id);
+            $item = User::findOrFail($data->id);
 
             return new UserResource($item);
         } catch (\Exception $e) {
-            return Response::json(['message' => 'token error']);
+            return Response::json(['message' => 'token error'], 400);
         }
     }
 }
