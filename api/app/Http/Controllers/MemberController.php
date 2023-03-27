@@ -36,7 +36,7 @@ class MemberController extends Controller
 
     public function show($id)
     {
-        $item = Member::find($id);
+        $item = Member::findOrFail($id);
 
         return new MemberResource($item);
     }
@@ -54,7 +54,7 @@ class MemberController extends Controller
     {
         $data = $req->validated();
 
-        $item = Member::find($id);
+        $item = Member::findOrFail($id);
 
         if ($item) {
             $item->update($data);
@@ -65,7 +65,7 @@ class MemberController extends Controller
 
     public function destroy($id)
     {
-        $item = Member::find($id);
+        $item = Member::findOrFail($id);
 
         if ($item) {
             $item->delete();
