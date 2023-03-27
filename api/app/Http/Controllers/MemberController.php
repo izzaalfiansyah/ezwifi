@@ -56,9 +56,7 @@ class MemberController extends Controller
 
         $item = Member::findOrFail($id);
 
-        if ($item) {
-            $item->update($data);
-        }
+        $item->update($data);
 
         return new MemberResource($item);
     }
@@ -67,9 +65,7 @@ class MemberController extends Controller
     {
         $item = Member::findOrFail($id);
 
-        if ($item) {
-            $item->delete();
-        }
+        $item->delete();
 
         return new MemberResource($item);
     }

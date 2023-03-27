@@ -28,7 +28,7 @@ class LayananController extends Controller
 
     public function show($id)
     {
-        $item = Layanan::find($id);
+        $item = Layanan::findOrFail($id);
 
         return new LayananResource($item);
     }
@@ -44,23 +44,20 @@ class LayananController extends Controller
 
     public function update(LayananRequest $req, $id)
     {
-        $item = Layanan::find($id);
+        $item = Layanan::findOrFail($id);
+
         $data = $req->validated();
 
-        if ($item) {
-            $item->update($data);
-        }
+        $item->update($data);
 
         return new LayananResource($item);
     }
 
     public function destroy($id)
     {
-        $item = Layanan::find($id);
+        $item = Layanan::findOrFail($id);
 
-        if ($item) {
-            $item->delete();
-        }
+        $item->delete();
 
         return new LayananResource($item);
     }

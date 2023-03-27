@@ -52,9 +52,7 @@ class TransaksiController extends Controller
 
         $item = Transaksi::findOrFail($id);
 
-        if ($item) {
-            $item->update($data);
-        }
+        $item->update($data);
 
         return new TransaksiResource($item);
     }
@@ -63,9 +61,7 @@ class TransaksiController extends Controller
     {
         $item = Transaksi::findOrFail($id);
 
-        if ($item) {
-            $item->delete();
-        }
+        $item->delete();
 
         return new TransaksiResource($item);
     }
