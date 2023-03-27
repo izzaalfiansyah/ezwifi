@@ -7,6 +7,7 @@ use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Response;
@@ -108,6 +109,21 @@ class UserController extends Controller
             }
         } else {
             return Response::json(['message' => 'username tidak ditemukan'], 400);
+        }
+    }
+
+    public function showByToken(Request $req)
+    {
+        try {
+            $key = env('JWT_KEY');
+            $token = explode(' ', $req->header('Authorization'))[1];
+            $data = JWT::decode($token, new Key($key, 'HS256'));
+
+            $item = User::find($data->id);
+
+            return new UserResource($item);
+        } catch (\Exception $e) {
+            return Response::json(['message' => 'token error']);
         }
     }
 }
