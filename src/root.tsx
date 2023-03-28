@@ -18,7 +18,8 @@ import HomeLayout from "./layouts/Home";
 import AdminLayout from "./layouts/Admin";
 
 export default function Root() {
-  const isLogin = localStorage.getItem("xid");
+  const isLogin = localStorage.getItem("token");
+
   const [selectedLayout, setSelectedLayout] =
     createSignal<keyof typeof layouts>("home");
 
@@ -34,7 +35,7 @@ export default function Root() {
   });
 
   return (
-    <Html lang="en">
+    <Html lang="en" data-theme="light">
       <Head>
         <Title>SolidStart - With TailwindCSS</Title>
         <Meta charset="utf-8" />

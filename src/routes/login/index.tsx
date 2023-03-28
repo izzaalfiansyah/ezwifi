@@ -48,25 +48,28 @@ export default function () {
           <div class="text-2xl font-semibold">Login</div>
           <div>Mulai masuk ke akun anda!</div>
         </div>
-        <TextField
+        <input
+          type="text"
+          class="input input-bordered w-full mb-3"
           placeholder="Username atau Email"
           value={req.username}
           onChange={(e) => setReq("username", e.currentTarget.value)}
           required
         />
-        <TextField
-          type="password"
+        <input
+          type="text"
+          class="input input-bordered w-full mb-3"
           placeholder="Password"
           value={req.password}
           onChange={(e) => setReq("password", e.currentTarget.value)}
           required
         />
         <div class="mt-8">
-          <Btn type="submit" class="w-full">
+          <button type="submit" class="w-full btn btn-primary">
             Masuk
-          </Btn>
+          </button>
         </div>
-        <div class="mt-5 text-center">
+        <div class="mt-6 text-center">
           Belum punya akun? Daftar{" "}
           <A href="/register" class="text-primary">
             di sini

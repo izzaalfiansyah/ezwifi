@@ -50,27 +50,30 @@ export default function () {
     <div class="min-h-screen flex flex-col items-center justify-center p-4">
       <form
         onSubmit={handleSubmit}
-        class="backdrop-blur-sm rounded-xl max-w-[550px] w-full p-8 bg-white shadow"
+        class="backdrop-blur-sm rounded-xl max-w-[600px] w-full p-8 bg-white shadow"
       >
         <div class="mb-10">
           <div class="text-2xl font-semibold">Register</div>
           <div>Daftarkan akun anda!</div>
         </div>
-        <TextField
+        <input
+          class="input input-bordered w-full mb-3"
           placeholder="Nama Kamu"
           required
           value={req.nama}
           onChange={(e) => setReq("nama", e.currentTarget.value)}
         />
         <div class="flex flex-col lg:flex-row lg:space-x-3">
-          <TextField
+          <input
+            class="input input-bordered w-full mb-3"
             type="tel"
             placeholder="Nomor Telepon"
             required
             value={req.telepon}
             onChange={(e) => setReq("telepon", e.currentTarget.value)}
           />
-          <TextField
+          <input
+            class="input input-bordered w-full mb-3"
             type="email"
             placeholder="Email"
             required
@@ -78,7 +81,8 @@ export default function () {
             onChange={(e) => setReq("email", e.currentTarget.value)}
           />
         </div>
-        <TextArea
+        <textarea
+          class="textarea input-bordered w-full mb-3"
           rows={3}
           placeholder="Alamat"
           required
@@ -86,13 +90,15 @@ export default function () {
           onChange={(e) => setReq("alamat", e.currentTarget.value)}
         />
         <div class="flex flex-col lg:flex-row lg:space-x-3">
-          <TextField
+          <input
+            class="input input-bordered w-full mb-3"
             placeholder="Username"
             required
             value={req.username}
             onChange={(e) => setReq("username", e.currentTarget.value)}
           />
-          <TextField
+          <input
+            class="input input-bordered w-full mb-3"
             type="password"
             placeholder="Password"
             required
@@ -101,9 +107,9 @@ export default function () {
           />
         </div>
         <div class="mt-10">
-          <Btn type="submit" class="w-full">
+          <button type="submit" class="w-full btn btn-primary">
             Daftar
-          </Btn>
+          </button>
         </div>
         <div class="mt-5 text-center">
           Sudah punya akun? Login{" "}
