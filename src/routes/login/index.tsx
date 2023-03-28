@@ -1,6 +1,7 @@
 import { createStore } from "solid-js/store";
 import { A, useNavigate } from "solid-start";
 import Btn from "~/components/Btn";
+import Card from "~/components/Card";
 import TextField from "~/components/TextField";
 import auth from "~/services/auth";
 

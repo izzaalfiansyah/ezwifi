@@ -12,6 +12,7 @@ import {
   Title,
 } from "solid-start";
 import "./root.css";
+import "flowbite";
 import { Dynamic } from "solid-js/web";
 import HomeLayout from "./layouts/Home";
 import AdminLayout from "./layouts/Admin";
