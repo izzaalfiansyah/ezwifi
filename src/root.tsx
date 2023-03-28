@@ -14,6 +14,7 @@ import {
 import "./root.css";
 import { Dynamic } from "solid-js/web";
 import HomeLayout from "./layouts/Home";
+import AdminLayout from "./layouts/Admin";
 
 export default function Root() {
   const isLogin = localStorage.getItem("xid");
@@ -22,7 +23,7 @@ export default function Root() {
 
   const layouts = {
     home: HomeLayout,
-    admin: HomeLayout,
+    admin: AdminLayout,
   };
 
   onMount(() => {
