@@ -1,8 +1,6 @@
 import { createStore } from "solid-js/store";
 import { A, useNavigate } from "solid-start";
-import Btn from "~/components/Btn";
-import Card from "~/components/Card";
-import TextField from "~/components/TextField";
+import { useAuthContext } from "~/contexts/AuthContext";
 import auth from "~/services/auth";
 
 export default function () {
@@ -14,6 +12,8 @@ export default function () {
     password: "",
   });
 
+  const authContext = useAuthContext();
+
   const navigate = useNavigate();
 
   async function handleSubmit(e: SubmitEvent) {
@@ -21,7 +21,9 @@ export default function () {
 
     try {
       const res = await auth.login(req);
-      localStorage.setItem("token", res.token);
+
+      authContext?.setToken(res.token);
+      authContext?.setRole(res.data.role);
 
       alert("berhasil login");
 
@@ -29,8 +31,6 @@ export default function () {
         username: "",
         password: "",
       });
-
-      localStorage.setItem("token", res.token);
 
       navigate("/");
     } catch (e: any) {

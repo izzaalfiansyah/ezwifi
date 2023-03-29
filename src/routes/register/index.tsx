@@ -1,8 +1,5 @@
 import { createStore } from "solid-js/store";
 import { A, useNavigate } from "solid-start";
-import Btn from "~/components/Btn";
-import TextArea from "~/components/TextArea";
-import TextField from "~/components/TextField";
 import UserInterface from "~/interfaces/user";
 import auth from "~/services/auth";
 
@@ -82,8 +79,8 @@ export default function () {
           />
         </div>
         <textarea
-          class="textarea input-bordered w-full mb-3"
-          rows={3}
+          class="textarea textarea-bordered w-full mb-3 resize-none"
+          rows={2}
           placeholder="Alamat"
           required
           value={req.alamat}

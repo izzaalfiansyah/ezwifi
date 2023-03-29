@@ -1,4 +1,6 @@
 import { useNavigate } from "solid-start";
+import { useAuthContext } from "~/contexts/AuthContext";
+import auth from "~/services/auth";
 
 interface Props {
   children: any;
@@ -6,10 +8,15 @@ interface Props {
 
 export default (props: Props) => {
   const navigate = useNavigate();
+  const authContext = useAuthContext();
 
-  function handleSignOut(e: Event) {
+  async function handleSignOut(e: Event) {
     e.preventDefault();
-    localStorage.removeItem("token");
+
+    await auth.logout();
+
+    authContext?.setToken(null);
+    authContext?.setRole(null);
 
     navigate("/");
   }
@@ -44,7 +51,7 @@ export default (props: Props) => {
         class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
         aria-label="Sidebar"
       >
-        <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+        <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 bg-primary">
           <ul class="space-y-2 font-medium">
             <li>
               <a
