@@ -10,7 +10,7 @@ interface LoginProps {
 
 export default {
   async login(props: LoginProps): Promise<TokenInterface> {
-    const res = await http.post("/login", props);
+    const res = await http().post("/login", props);
     const data = res.data as TokenInterface;
 
     localStorage.setItem("token", data.token);
@@ -19,7 +19,7 @@ export default {
     return data;
   },
   async register(props: UserInterface): Promise<UserInterface | void> {
-    const res = await http.post("/register", props);
+    const res = await http().post("/register", props);
     return res.data;
   },
   async logout(): Promise<void> {
