@@ -1,6 +1,8 @@
+import { createSignal } from "solid-js";
 import { createStore } from "solid-js/store";
 import { A, useNavigate } from "solid-start";
 import { useAuthContext } from "~/contexts/AuthContext";
+import notif from "~/libs/notif";
 import auth from "~/services/auth";
 
 export default function () {
@@ -13,7 +15,6 @@ export default function () {
   });
 
   const authContext = useAuthContext();
-
   const navigate = useNavigate();
 
   async function handleSubmit(e: SubmitEvent) {
@@ -25,7 +26,7 @@ export default function () {
       authContext?.setToken(res.token);
       authContext?.setRole(res.data.role);
 
-      alert("berhasil login");
+      notif("berhasil login", "success");
 
       setReq({
         username: "",
