@@ -41,7 +41,7 @@ export default (props: Props) => {
           <nav class="lg:hidden py-6 px-6 border-b bg-white">
             <div class="flex items-center justify-between">
               <a class="text-2xl font-semibold" href="#" data-config-id="brand">
-                <div class="font-bold text-2xl">Artemis</div>
+                <div class="font-bold text-2xl">Ezwifi</div>
               </a>
               <button
                 class="navbar-burger flex items-center rounded focus:outline-none"
@@ -75,7 +75,7 @@ export default (props: Props) => {
                   href="#"
                   data-config-id="brand"
                 >
-                  <div class="text-center text-2xl font-bold">Artemis</div>
+                  <div class="text-center text-2xl font-bold">Ezwifi</div>
                 </a>
               </div>
               <div class="px-4 pb-6">
