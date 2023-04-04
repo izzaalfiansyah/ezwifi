@@ -31,7 +31,9 @@ export default class AuthService {
     authContext?.setToken("");
     authContext?.setRole("");
   }
-  static async profile(): Promise<UserInterface> {
+  static async profile(): Promise<{
+    data: UserInterface;
+  }> {
     const res = await http().get("/profile");
     return res.data;
   }
