@@ -32,6 +32,7 @@ class TransaksiResource extends JsonResource
 
         return [
             'id' => $this->id,
+            'member_id' => $this->member_id,
             'member' => new MemberResource(Member::find($this->member_id)),
             'bulan' => $this->bulan,
             'bulan_detail' => $bulan[(int) $this->bulan],
