@@ -18,8 +18,11 @@ class MemberResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'petugas_id' => $this->petugas_id,
             'petugas' => new UserResource(User::find($this->petugas_id)),
+            'pelanggan_id' => $this->pelanggan_id,
             'pelanggan' => new UserResource(User::find($this->pelanggan_id)),
+            'layanan_id' => $this->layanan_id,
             'layanan' => new LayananResource(Layanan::find($this->layanan_id)),
             'status' => $this->status,
             'keterangan' => $this->keterangan,
