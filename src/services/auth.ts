@@ -8,8 +8,8 @@ interface LoginProps {
   password: string;
 }
 
-export default {
-  async login(props: LoginProps): Promise<TokenInterface> {
+export default class AuthService {
+  static async login(props: LoginProps): Promise<TokenInterface> {
     const res = await http().post("/login", props);
     const data = res.data as TokenInterface;
 
@@ -17,12 +17,12 @@ export default {
     localStorage.setItem("role", data.data.role);
 
     return data;
-  },
-  async register(props: UserInterface): Promise<UserInterface | void> {
+  }
+  static async register(props: UserInterface): Promise<UserInterface | void> {
     const res = await http().post("/register", props);
     return res.data;
-  },
-  async logout(): Promise<void> {
+  }
+  static async logout(): Promise<void> {
     localStorage.removeItem("token");
     localStorage.removeItem("role");
 
@@ -30,5 +30,5 @@ export default {
 
     authContext?.setToken("");
     authContext?.setRole("");
-  },
-};
+  }
+}

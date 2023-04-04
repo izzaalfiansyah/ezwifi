@@ -1,7 +1,7 @@
 import { createSignal } from "solid-js";
 import { useNavigate } from "solid-start";
 import { useAuthContext } from "~/contexts/AuthContext";
-import auth from "~/services/auth";
+import AuthService from "~/services/auth";
 
 interface Props {
   children: any;
@@ -20,7 +20,7 @@ export default (props: Props) => {
   async function handleSignOut(e: Event) {
     e.preventDefault();
 
-    await auth.logout();
+    await AuthService.logout();
 
     authContext?.setToken(null);
     authContext?.setRole(null);

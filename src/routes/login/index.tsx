@@ -1,9 +1,8 @@
-import { createSignal } from "solid-js";
 import { createStore } from "solid-js/store";
 import { A, useNavigate } from "solid-start";
 import { useAuthContext } from "~/contexts/AuthContext";
 import notif from "~/libs/notif";
-import auth from "~/services/auth";
+import AuthService from "~/services/auth";
 
 export default function () {
   const [req, setReq] = createStore<{
@@ -21,7 +20,7 @@ export default function () {
     e.preventDefault();
 
     try {
-      const res = await auth.login(req);
+      const res = await AuthService.login(req);
 
       authContext?.setToken(res.token);
       authContext?.setRole(res.data.role);

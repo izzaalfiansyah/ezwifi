@@ -2,7 +2,7 @@ import { createStore } from "solid-js/store";
 import { A, useNavigate } from "solid-start";
 import UserInterface from "~/interfaces/user";
 import notif from "~/libs/notif";
-import auth from "~/services/auth";
+import AuthService from "~/services/auth";
 
 export default function () {
   const [req, setReq] = createStore<UserInterface>({
@@ -33,7 +33,7 @@ export default function () {
     e.preventDefault();
 
     try {
-      await auth.register(req);
+      await AuthService.register(req);
 
       notif("berhasil registrasi akun. Silahkan login!", "success");
 
