@@ -1,3 +1,4 @@
+import { A } from "@solidjs/router";
 import { For, createSignal } from "solid-js";
 import { useNavigate } from "solid-start";
 import { useAuthContext } from "~/contexts/AuthContext";
@@ -228,20 +229,20 @@ export default (props: Props) => {
                   <For each={menus}>
                     {(item) => (
                       <li>
-                        <a
+                        <A
                           class="flex items-center pl-3 py-3 pr-2 text-gray-500 hover:bg-indigo-50 rounded"
                           href={item.path}
                         >
                           <span class="inline-block mr-3">{item.icon}</span>
                           <span>{item.title}</span>
-                        </a>
+                        </A>
                       </li>
                     )}
                   </For>
                   <li>
                     <a
                       class="flex items-center pl-3 py-3 pr-2 text-gray-500 hover:bg-indigo-50 rounded"
-                      href="#"
+                      href="logout"
                       onClick={handleSignOut}
                     >
                       <span class="inline-block mr-3">
